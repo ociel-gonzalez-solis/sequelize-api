@@ -1,0 +1,294 @@
+openapi: 3.0.0
+info:
+  title: sequelize-api
+  contact: {}
+  version: '1.0'
+servers:
+  - url: https://sequelize-api-task-projects.herokuapp.com/api/v1
+    variables: {}
+paths:
+  /projects:
+    post:
+      tags:
+        - projects
+      summary: Create project
+      operationId: Createproject
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateprojectRequest'
+            example:
+              name: Project2
+              priority: 4
+              description: Halo project
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+    get:
+      tags:
+        - projects
+      summary: Get Projects
+      operationId: GetProjects
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /projects/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The user ID
+    delete:
+      tags:
+        - projects
+      summary: Delete Project
+      operationId: DeleteProject
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+    put:
+      tags:
+        - projects
+      summary: Update Project
+      operationId: UpdateProject
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProjectRequest'
+            example:
+              name: Project3
+              priority: 5
+              description: Js project
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+    get:
+      tags:
+        - projects
+      summary: Get Project
+      operationId: GetProject
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /tasks:
+    post:
+      tags:
+        - task
+      summary: Create Task
+      operationId: CreateTask
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTaskRequest'
+            example:
+              name: My second task
+              done: true
+              projectId: 2
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+    get:
+      tags:
+        - task
+      summary: Get Tasks
+      operationId: GetTasks
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /task/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The task ID
+    get:
+      tags:
+        - task
+      summary: Get Task
+      operationId: GetTask
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+    put:
+      tags:
+        - task
+      summary: Update Task
+      operationId: UpdateTask
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTaskRequest'
+            example:
+              name: My third task
+              done: true
+              projectId: 2
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+    delete:
+      tags:
+        - task
+      summary: Delete Task
+      operationId: DeleteTask
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /projects/{id}/tasks:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The project ID
+    get:
+      tags:
+        - task
+      summary: Get Tasks of Project
+      operationId: GetTasksofProject
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+components:
+  schemas:
+    CreateprojectRequest:
+      title: CreateprojectRequest
+      required:
+        - name
+        - priority
+        - description
+      type: object
+      properties:
+        name:
+          type: string
+        priority:
+          type: integer
+          format: int32
+        description:
+          type: string
+      example:
+        name: Project2
+        priority: 4
+        description: Halo project
+    UpdateProjectRequest:
+      title: UpdateProjectRequest
+      required:
+        - name
+        - priority
+        - description
+      type: object
+      properties:
+        name:
+          type: string
+        priority:
+          type: integer
+          format: int32
+        description:
+          type: string
+      example:
+        name: Project3
+        priority: 5
+        description: Js project
+    CreateTaskRequest:
+      title: CreateTaskRequest
+      required:
+        - name
+        - done
+        - projectId
+      type: object
+      properties:
+        name:
+          type: string
+        done:
+          type: boolean
+        projectId:
+          type: integer
+          format: int32
+      example:
+        name: My second task
+        done: true
+        projectId: 2
+    UpdateTaskRequest:
+      title: UpdateTaskRequest
+      required:
+        - name
+        - done
+        - projectId
+      type: object
+      properties:
+        name:
+          type: string
+        done:
+          type: boolean
+        projectId:
+          type: integer
+          format: int32
+      example:
+        name: My third task
+        done: true
+        projectId: 2
+tags:
+  - name: projects
+    description: ''
+  - name: task
+    description: ''
